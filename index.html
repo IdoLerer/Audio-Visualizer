@@ -8,16 +8,21 @@
 <body>
   <div class="Container">
     <div class="">
-      <canvas id="canvas" width="2400" height="800"></canvas>
+      <canvas id="canvas1" width="2400" height="500"></canvas>
+      <canvas id="canvas2" width="2400" height="500"></canvas>
     </div>
     <div class="Controls">
       <audio id="source" controls>
-        <source src="./bensound-memories.mp3" type="audio/mpeg">
+        <source src="./remembering.mp3" type="audio/mpeg">
       </audio>
     </div>
   </div>
-
-  <script type="text/javascript" src="./audio_processor.js"></script>
+  <script type="text/javascript" src="./beat_detector.js"></script>
+  <script type="text/javascript" src="./bass_detector.js"></script>
+  <script type="text/javascript" src="./bass_painter.js"></script>
+  <script type="text/javascript" src="./frequency_bar_painter.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+  <!-- <script type="text/javascript" src="./audio_processor.js"></script> -->
 </body>
 
 </html>
