@@ -11,22 +11,11 @@ let isPlaying = false;
 
 const canvas1 = document.getElementById("canvas1");
 const canvas2 = document.getElementById("canvas2");
-// const ctx = canvas.getContext("2d");
-
-const throttle = (func, limit) => {
-  let inThrottle
-  return function() {
-    const args = arguments
-    const context = this
-    if (!inThrottle) {
-      func.apply(context, args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
-    }
-  }
-}
+// const ctx = canvas.getContext("2d")
 
 const bassPainter = new BassPainter(data, canvas1);
+const rainPainter = new RainPainter(data, canvas1);
+const turningPointPainter = new TurningPointPainter(data, canvas1);
 const frequencyBarPainter = new FrequencyBarPainter(data, canvas2);
 
 function loopingFunction() {
@@ -35,7 +24,9 @@ function loopingFunction() {
   analyser.getByteFrequencyData(data);
   // drawBarGraph(data);
   // analyser.getByteTimeDomainData(data);
-  bassPainter.draw();
+  // bassPainter.draw();
+  // rainPainter.draw();
+  turningPointPainter.draw();
   frequencyBarPainter.draw();
   // drawWaveForm(data);
   // drawEllipse(data);
