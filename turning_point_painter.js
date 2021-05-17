@@ -5,13 +5,13 @@ const splitPoints = throttle((points) => {
       const point = points[i];
       const dTheta = Math.random() * Math.PI / 2;
       point.theta += dTheta;
-      points.push(new Point(point.x, point.y, point.theta - dTheta, point.ctx, point.maxWidth, point.maxHeight));
+      points.push(new Point(point.x, point.y, point.theta - dTheta, point.ctx, point.maxWidth, point.maxHeight, point.colorNumber + 1));
     }
   },
   1000);
 
 class Point {
-  constructor(x, y, theta, ctx, maxWidth, maxHeight, lifeTime) {
+  constructor(x, y, theta, ctx, maxWidth, maxHeight, colorNumber, lifeTime) {
     this.x = x;
     this.y = y;
     this.r = 3;
@@ -19,8 +19,9 @@ class Point {
     this.ctx = ctx;
     this.maxWidth = maxWidth;
     this.maxHeight = maxHeight;
-    this.color = palette[Math.floor(Math.random() * palette.length)];
-    this.lifeTime = lifeTime || Math.random() * 250;
+    this.colorNumber = colorNumber;
+    this.color = palette2[colorNumber % palette2.length];
+    this.lifeTime = lifeTime || Math.random() * 350;
   }
 
   draw() {
@@ -46,7 +47,7 @@ class TurningPointPainter {
     this.ctx = canvas.getContext("2d");
     this.height = canvas.height;
     this.width = canvas.width;
-    this.points = [new Point(100, this.height / 2, 0, this.ctx, this.width, this.height, 2500)];
+    this.points = [new Point(100, this.height / 2, 0, this.ctx, this.width, this.height, 0, 2500)];
     this.bassDetector = new BassDetector(data);
   }
 
