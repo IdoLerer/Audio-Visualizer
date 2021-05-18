@@ -10,13 +10,17 @@ const data = new Uint8Array(bufferLength);
 let isPlaying = false;
 
 const canvas1 = document.getElementById("canvas1");
-const canvas2 = document.getElementById("canvas2");
+// const canvas2 = document.getElementById("canvas2");
+
+canvas1.width = window.innerWidth;
+canvas1.height = window.innerHeight;
 // const ctx = canvas.getContext("2d")
 
 const bassPainter = new BassPainter(data, canvas1);
 const rainPainter = new RainPainter(data, canvas1);
 const turningPointPainter = new TurningPointPainter(data, canvas1);
-const frequencyBarPainter = new FrequencyBarPainter(data, canvas2);
+// const frequencyBarPainter = new FrequencyBarPainter(data, canvas2);
+const ellipsePainter = new EllipsePainter(data, canvas1);
 
 function loopingFunction() {
   if (isPlaying)
@@ -26,8 +30,9 @@ function loopingFunction() {
   // analyser.getByteTimeDomainData(data);
   // bassPainter.draw();
   // rainPainter.draw();
+  // ellipsePainter.draw();
   turningPointPainter.draw();
-  frequencyBarPainter.draw();
+  // frequencyBarPainter.draw();
   // drawWaveForm(data);
   // drawEllipse(data);
 }
