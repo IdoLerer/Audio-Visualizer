@@ -1,8 +1,10 @@
 let x = 0;
 
+const palette = palette2;
+
 const splitPoints = throttle((points) => {
     const n = points.length;
-    const dTheta = Math.random() * Math.PI / 2;
+    const dTheta = Math.random() * 2 * Math.PI / 3;
     if (n > 250) return;
     for (let i = 0; i < n; i++) {
       const point = points[i];
@@ -17,15 +19,15 @@ class Point {
   constructor(x, y, theta, ctx, maxWidth, maxHeight, colorNumber, lifeTime) {
     this.x = x;
     this.y = y;
-    this.r = 2;
+    this.r = 1;
     this.theta = theta;
     this.ctx = ctx;
     this.maxWidth = maxWidth;
     this.maxHeight = maxHeight;
     this.colorNumber = colorNumber;
     this.color = palette[colorNumber % palette.length];
-    this.lifeTime = lifeTime || Math.random() * 350;
-    // this.lifeTime = 500;
+    // this.lifeTime = lifeTime || Math.random() * 350;
+    this.lifeTime = lifeTime || 200;
     this.toRemove = false;
   }
 
@@ -36,7 +38,8 @@ class Point {
     this.ctx.fill();
     let dx = this.r * Math.cos(this.theta);
     let dy = this.r * Math.sin(this.theta);
-    if (this.x + dx > this.maxWidth || this.x + dx < 0) this.theta += Math.PI / 2;
+    // if (this.x + dx > this.maxWidth || this.x + dx < 0) this.theta += Math.PI / 2;
+    if (this.x + dx > this.maxWidth || this.x + dx < 0) this.toRemove = true;
     // if (this.y + dy > this.maxHeight || this.y + dy < 0) this.theta = -this.theta;
     if (this.y + dy > this.maxHeight || this.y + dy < 0) this.toRemove = true;
     dx = this.r * Math.cos(this.theta);
@@ -53,7 +56,11 @@ class TurningPointPainter {
     this.ctx = canvas.getContext("2d");
     this.height = canvas.height;
     this.width = canvas.width;
-    this.points = [new Point(100, this.height / 2, 0, this.ctx, this.width, this.height, 0, 2500)];
+    this.points = [new Point(this.width / 2, this.height / 2, 0, this.ctx, this.width, this.height, 0, 2500),
+      new Point(this.width / 2, this.height / 2, 1 * 2 * Math.PI / 4, this.ctx, this.width, this.height, 0, 2500),
+      new Point(this.width / 2, this.height / 2, 2 * 2 * Math.PI / 4, this.ctx, this.width, this.height, 0, 2500),
+      new Point(this.width / 2, this.height / 2, 3 * 2 * Math.PI / 4, this.ctx, this.width, this.height, 0, 2500)
+    ];
     this.bassDetector = new BassDetector(data);
   }
 

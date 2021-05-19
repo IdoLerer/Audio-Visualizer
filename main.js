@@ -12,15 +12,15 @@ let isPlaying = false;
 const canvas1 = document.getElementById("canvas1");
 // const canvas2 = document.getElementById("canvas2");
 
-canvas1.width = window.innerWidth;
-canvas1.height = window.innerHeight;
+// canvas1.width = window.innerWidth;
+// canvas1.height = window.innerHeight;
 // const ctx = canvas.getContext("2d")
 
-const bassPainter = new BassPainter(data, canvas1);
-const rainPainter = new RainPainter(data, canvas1);
+// const bassPainter = new BassPainter(data, canvas1);
+// const rainPainter = new RainPainter(data, canvas1);
 const turningPointPainter = new TurningPointPainter(data, canvas1);
 // const frequencyBarPainter = new FrequencyBarPainter(data, canvas2);
-const ellipsePainter = new EllipsePainter(data, canvas1);
+// const ellipsePainter = new EllipsePainter(data, canvas1);
 
 function loopingFunction() {
   if (isPlaying)
